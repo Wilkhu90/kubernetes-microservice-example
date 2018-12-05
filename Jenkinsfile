@@ -9,4 +9,15 @@ node ('master') {
         echo "Build: ${BUILD}"
         sh "sudo docker build -t wilkhu90/micro1:${BUILD} ."
     }
+    stage('Test') {
+      steps {
+        echo 'Testing..'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying....'
+      }
+    }
+  }
 }

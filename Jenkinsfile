@@ -1,25 +1,17 @@
-echo "Branch name: ${BRANCH_NAME}"
-BUILD = BRANCH_NAME == 'master' ? 'latest' : BRANCH_NAME
-echo "Build: ${BUILD}"
+pipeline {
+    agent any
 
-node ('master') {
-    checkout scm
-    echo "Build: ${BUILD}"
-    stage ('Build Building container') {
-        echo "Build: ${BUILD}"
-        sh "echo $PATH"
-        sh "/var/jenkins_home/maven/bin/mvn clean package"
-        sh "docker build -t wilkhu90/micro1:${BUILD} ."
+    environment {
+        HTTP_PROXY    = 'http://no-proxy.app.c9.equifax.com:3128'
+        HTTPS_PROXY    = 'http://no-proxy.app.c9.equifax.com:3128'
     }
-    stage('Test') {
-      steps {
-        echo 'Testing..'
-      }
-    }
-    stage('Deploy') {
-      steps {
-        echo 'Deploying....'
-      }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'ls -lhrt'
+                sh 'mvn clean package'
+            }
+        }
     }
 }
-

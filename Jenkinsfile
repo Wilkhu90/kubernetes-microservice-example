@@ -8,10 +8,19 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                sh 'printenv'
-                sh '/var/jenkins_home/maven/bin/mvn clean package'
-            }
+          sh "echo 'Build in progress...'"
+          sh '/var/jenkins_home/maven/bin/mvn clean package'
+          sh 'docker build -t wilkhu90/micro1:${BUILD} .'
+        }
+        stage('Test') {
+          steps {
+            echo 'Testing..'
+          }  
+        }
+        stage('Deploy') {
+          steps {
+            echo 'Deploying....'
+          }
         }
     }
 }

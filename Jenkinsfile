@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'ls -lhrt'
-                sh 'mvn clean package'
+                sh 'printenv'
+                sh '/var/jenkins_home/maven/bin/mvn clean package'
             }
         }
     }

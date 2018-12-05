@@ -4,7 +4,6 @@ pipeline {
     environment {
         HTTP_PROXY    = 'http://no-proxy.app.c9.equifax.com:3128'
         HTTPS_PROXY    = 'http://no-proxy.app.c9.equifax.com:3128'
-        https.protocols = 'TLSv1,TLSv1.1,TLSv1.2'
     }
 
     stages {

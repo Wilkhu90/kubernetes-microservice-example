@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
+
 RUN mkdir /usr/micro1
 
 WORKDIR /usr/micro1

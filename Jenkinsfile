@@ -8,9 +8,11 @@ pipeline {
 
     stages {
         stage('Build') {
-          sh "echo 'Build in progress...'"
-          sh '/var/jenkins_home/maven/bin/mvn clean package'
-          sh 'docker build -t wilkhu90/micro1:${BUILD} .'
+          steps {
+            sh "echo 'Build in progress...'"
+            sh '/var/jenkins_home/maven/bin/mvn clean package'
+            sh 'docker build -t wilkhu90/micro1:${BUILD} .'
+          }
         }
         stage('Test') {
           steps {

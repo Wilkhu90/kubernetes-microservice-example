@@ -24,10 +24,12 @@ pipeline {
         stage('Deploy') {
           steps {
             echo 'Deploying....'
-            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-id') {
-              def app = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
-              app.push("${env.BUILD_ID}")
-              app.push("latest")
+            script {
+              docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-id') {
+                def app = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
+                app.push("${env.BUILD_ID}")
+                app.push("latest")
+              }
             }
           }
         }

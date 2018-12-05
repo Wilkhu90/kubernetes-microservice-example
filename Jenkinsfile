@@ -19,5 +19,4 @@ node ('master') {
         echo 'Deploying....'
       }
     }
-  }
 }

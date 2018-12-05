@@ -11,8 +11,7 @@ pipeline {
             sh "echo 'Build in progress...'"
             sh '/var/jenkins_home/maven/bin/mvn clean package'
             script {
-              def customImage = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
-              customImage.push()
+              docker.build("wilkhu90/micro1:${env.BUILD_ID}")
             }
           }
         }

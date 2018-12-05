@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
           steps {
             echo 'Testing..'
-            sh "mvn test"
+            sh "/var/jenkins_home/maven/bin/mvn test"
           }  
         }
         stage('Deploy') {

@@ -7,7 +7,7 @@ node ('master') {
     echo "Build: ${BUILD}"
     stage ('Build Building container') {
         echo "Build: ${BUILD}"
-        sh "sudo docker build -t wilkhu90/micro1:${BUILD} ."
+        sh "docker build -t wilkhu90/micro1:${BUILD} ."
     }
     stage('Test') {
       steps {

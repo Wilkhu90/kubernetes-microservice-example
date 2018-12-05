@@ -8,7 +8,7 @@ node ('master') {
     stage ('Build Building container') {
         echo "Build: ${BUILD}"
         sh "ls -lhrt"
-        sh "mvn clean package"
+        sh "./mvnw"
         sh "docker build -t wilkhu90/micro1:${BUILD} ."
     }
     stage('Test') {

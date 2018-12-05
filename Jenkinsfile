@@ -6,13 +6,12 @@ pipeline {
     }
 
     stages {
-       def app 
        stage('Build') {
           steps {
             sh "echo 'Build in progress...'"
             sh '/var/jenkins_home/maven/bin/mvn clean package'
             script {
-              app = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
+              docker.build("wilkhu90/micro1:${env.BUILD_ID}")
             }
           }
         }
@@ -26,6 +25,7 @@ pipeline {
           steps {
             echo 'Deploying....'
             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-id') {
+              def app = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
               app.push("${env.BUILD_ID}")
               app.push("latest")
             }

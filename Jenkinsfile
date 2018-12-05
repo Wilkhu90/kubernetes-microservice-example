@@ -13,7 +13,10 @@ pipeline {
           steps {
             sh "echo 'Build in progress...'"
             sh '/var/jenkins_home/maven/bin/mvn clean package'
-            sh 'docker build -t wilkhu90/micro1:${BUILD} .'
+            script {
+              def customImage = docker.build("wilkhu90/micro1:${env.BUILD_ID}")
+              customImage.push()
+            }
           }
         }
         stage('Test') {

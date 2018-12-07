@@ -9,7 +9,7 @@ pipeline {
        stage('Build') {
           steps {
             sh "echo 'Build in progress...'"
-            sh '/var/jenkins_home/maven/bin/mvn clean package'
+            sh 'mvn clean package'
             script {
               docker.build("wilkhu90/micro1:${env.BUILD_ID}")
             }
@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
           steps {
             echo 'Testing..'
-            sh "/var/jenkins_home/maven/bin/mvn test"
+            sh "mvn test"
           }  
         }
         stage('Deploy') {

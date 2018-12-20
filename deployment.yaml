@@ -38,3 +38,5 @@ spec:
   selector:
     app: micro1
   type: NodePort
+  externalIPs:
+  - 172.24.126.181
